@@ -11,19 +11,19 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 mongoose.Promise = Promise;
-mongoose.connect(process.env.MONGODB_URI, {
-  keepAlive: true,
-  reconnectTries: 2, // Number.MAX_VALUE
-}, (err) => {
-  if (!err) {
-    console.log(`connected to ${process.env.MONGODB_URI}`);
+mongoose.connect(process.env.MONGODB_URI, { reconnectTries: false }, (err) => {
+  if (err) {
+    console.log(err);
+    process.exit(0);
+  } else {
+    console.log('connected');
   }
-  console.error(`💣 ${err.name}: ${err.message}`);
-  process.exit(-1);
 });
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+const signup = require('./routes/auth/signup');
+const signin = require('./routes/auth/signin');
 
 const app = express();
 
@@ -47,7 +47,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/signup', signup);
+// app.use('/signin', signin);
+// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
