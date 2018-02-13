@@ -6,6 +6,22 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 
+const mongoose = require('mongoose');
+
+require('dotenv').config();
+
+mongoose.Promise = Promise;
+mongoose.connect(process.env.MONGODB_URI, {
+  keepAlive: true,
+  reconnectTries: 2, // Number.MAX_VALUE
+}, (err) => {
+  if (!err) {
+    console.log(`connected to ${process.env.MONGODB_URI}`);
+  }
+  console.error(`💣 ${err.name}: ${err.message}`);
+  process.exit(-1);
+});
+
 const index = require('./routes/index');
 const users = require('./routes/users');
 
