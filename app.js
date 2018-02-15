@@ -5,6 +5,11 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash');
+const passport = require('passport');
+const configurePassport = require('./helpers/passport');
 
 const mongoose = require('mongoose');
 
@@ -23,7 +28,8 @@ mongoose.connect(process.env.MONGODB_URI, { reconnectTries: false }, (err) => {
 const index = require('./routes/index');
 const users = require('./routes/users');
 const signup = require('./routes/auth/signup');
-const signin = require('./routes/auth/signin');
+const login = require('./routes/auth/signin');
+const profile = require('./routes/profiles/profile')
 
 const app = express();
 
@@ -38,6 +44,27 @@ app.set('layout', 'layouts/main'); // custom layout
 
 app.use(expressLayouts);
 
+app.use(session({
+  secret: 'our-passport-local-strategy-app',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000,
+  },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60, // 1 day
+  }),
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+configurePassport();
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -48,8 +75,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/signup', signup);
-// app.use('/signin', signin);
-// app.use('/users', users);
+app.use('/', login);
+app.use('/profiles', profile);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
