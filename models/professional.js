@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const familySchema = new Schema({
+const professionalSchema = new Schema({
   username: String,
   password: String,
   role: String,
@@ -9,6 +9,6 @@ const familySchema = new Schema({
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 
-const Family = mongoose.model('Family', familySchema);
+const Professional = mongoose.model('Professional', professionalSchema);
 
-module.exports = Family;
+module.exports = Professional;

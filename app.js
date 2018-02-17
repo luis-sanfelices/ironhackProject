@@ -26,7 +26,6 @@ mongoose.connect(process.env.MONGODB_URI, { reconnectTries: false }, (err) => {
 });
 
 const index = require('./routes/index');
-const users = require('./routes/users');
 const signup = require('./routes/auth/signup');
 const login = require('./routes/auth/signin');
 const profile = require('./routes/profiles/profile')
@@ -72,6 +71,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  res.locals.isAuthenticated = req.isAuthenticated();
+  next();
+});
 
 app.use('/', index);
 app.use('/signup', signup);

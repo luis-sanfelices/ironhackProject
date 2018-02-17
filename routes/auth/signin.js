@@ -11,8 +11,15 @@ router.get('/login', (req, res, next) => {
   res.render('auth/login', { message: req.flash('error') });
 });
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: 'profiles/family',
+router.post('/login/family', passport.authenticate('family', {
+  successRedirect: '/profiles/family',
+  failureRedirect: 'login',
+  failureFlash: true,
+  passReqToCallback: true,
+}));
+
+router.post('/login/professional', passport.authenticate('professional', {
+  successRedirect: '/profiles/professional',
   failureRedirect: 'login',
   failureFlash: true,
   passReqToCallback: true,

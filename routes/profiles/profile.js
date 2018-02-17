@@ -5,11 +5,12 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
-const Family = require('../../models/family');
-
-router.get('/family', (req, res, next) => {
-  res.render('profiles/family');
+router.get('/family', ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render('profiles/family', { user: req.user });
 });
 
+router.get('/professional', ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render('profiles/professional', { user: req.user });
+});
 
 module.exports = router;
