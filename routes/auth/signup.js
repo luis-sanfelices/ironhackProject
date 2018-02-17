@@ -39,7 +39,7 @@ router.post('/family', (req, res, next) => {
       if (err) {
         res.render('auth/signup', { error: 'Something went wrong' });
       } else {
-        passport.authenticate('local')(req, res, () => {
+        passport.authenticate('family')(req, res, () => {
           // req.toastr.success(‘Sesión iniciada con exito’, ‘Bienvenido!‘, optionsToastr);
           res.redirect('/profiles/family');
         });
@@ -79,7 +79,7 @@ router.post('/professional', (req, res, next) => {
       if (err) {
         res.render('auth/signup', { error: 'Something went wrong' });
       } else {
-        passport.authenticate('local')(req, res, () => {
+        passport.authenticate('professional')(req, res, () => {
           // req.toastr.success(‘Sesión iniciada con exito’, ‘Bienvenido!‘, optionsToastr);
           res.redirect('/profiles/professional');
         });

@@ -7,9 +7,9 @@
   <body>
     <h1> -Name of the app- </h1>
     <p> Welcome to the community for professional help </p>
-    <%  console.log(locals); 
-    if ( typeof(locals.isAuthenticated) != "undefined" && locals.isAuthenticated) {console.log(locals.user)%>
-    <p> You are logged as <%-locals.user.username%></p>
+    <%
+    if ( typeof(locals.isAuthenticated) != "undefined" && locals.isAuthenticated) {%>
+    <p> You are logged as <%-locals.user.username%> <%-locals.user.role%></p>
     <button type="button" name="Sign up" onclick='window.location.href="/profiles/<%-locals.user.role%>"'> Go to your profile</button>
     <%}%>
     <button type="button" name="Sign up" onclick='window.location.href="/signup/family"'> Sign up as family</button>
