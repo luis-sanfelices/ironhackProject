@@ -1,2 +1,52 @@
-<div>Hello professional <%-user.username %></div>
+<div>Hello professional <%-user.username %>
+  <form action="/profession" method="POST" id="profession">
+    <label for="Profession">Profession</label>
+    <input type="text" name="profession" maxlength="100"
+      placeholder="Add your profession" >
+      <br>
+      <h4>Experience</h4>
+    <label for="Title">Job title</label>
+    <input type="text" name="title" maxlength="100"
+      placeholder="Add your job title" > 
+      <br>
+    <label for="Comapny">Comapny</label>
+    <input type="text" name="comany" maxlength="300"
+      placeholder="Add company name" > 
+     <br>
+     <label for="Start">Date start</label>
+     <input type="text" name="Start" maxlength="300"
+       placeholder="Enter start date" > 
+      <br>
+      <label for="End">Date end</label>
+     <input type="text" name="End" maxlength="300"
+       placeholder="Enter end date" >
+      <br>
+      <input type="radio" name="current" value="other"> Current position <br>
+      <button class="button blue fright">Add experience</button>
+      <br>
+      <h4>Contact details</h4>
+      <label for="Email">E-mail</label>
+    <input type="text" name="email" maxlength="300"
+      placeholder="Add your e-mail address" > 
+    <br>
+    
+      <label for="LinkedIn">LinkedIn</label>
+    <input type="text" name="LinkedIn" maxlength="300"
+      placeholder="Add your LinkedIn profile" > 
+    <br>
+      <label for="Landline">Landline</label>
+      <input type="text" name="Landline" maxlength="300"
+        placeholder="Add your phone number" > 
+     <br> 
+       <label for="Mobile">Moblie</label>
+        <input type="text" name="Mobile" maxlength="300"
+          placeholder="Add your mobile number" > 
+     <br> 
+          
+    <button class="button blue fright">Change</button>
+  </form>
+
+ 
+
+</div>
 <a href='/logout'>log out</a>

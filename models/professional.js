@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const Education = new Schema({
-  title: String,
+  degree: String,
   university: String,
   graduation: Date,
   decription: String,
