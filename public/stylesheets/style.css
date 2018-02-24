@@ -1,12 +1,16 @@
 body {
-  padding: 100px;
-  font: 50px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+.nav-tabs-navigation{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
 
-a {
-  color: #00B7FF;
-}
-
-h1 {
-  padding-top: 500px;
-}
+ .logo-nav-bar {
+     margin-left:20px;
+ }
+ #family-info-form-container {
+  margin: 2%;
+  width: 50%;
+ }
