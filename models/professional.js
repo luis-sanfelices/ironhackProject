@@ -12,10 +12,8 @@ const Education = new Schema({
 const Experience = new Schema({
   title: String,
   company: String,
-  duration: {
-    from: Date,
-    to: Date,
-  },
+  from: Date,
+  to: Date,
   current: Boolean,
   decription: String,
 });

@@ -1,91 +1,102 @@
-<div>Hello professional <%-user.username %>
-  <form action="/profession" method="POST" id="profession">
-    <label for="Profession">Profession</label>
-    <input type="text" name="profession" maxlength="100"
-      placeholder="Add your profession" >
-      <br>
-      <h4>Experience</h4>
-    <label for="Title">Job title</label>
-    <input type="text" name="title" maxlength="100"
-      placeholder="Add your job title" > 
-      <br>
-    <label for="Comapny">Comapny</label>
-    <input type="text" name="comany" maxlength="300"
-      placeholder="Add company name" > 
-     <br>
-     <label for="Start">Date start</label>
-     <input type="text" name="Start" maxlength="300"
-       placeholder="Enter start date" > 
-      <br>
+<div>Hello professional
+  <%-user.username %>
+    <h4>Profession</h4>
+    <ul>
+      <% for (var i=0; i<user.profession.length; i++){%>
+        <li>
+          <%-user.profession[i]%>
+        </li>
+        <form action="/profiles/professional/deleteProfession/<%-locals.user.id%>" method="POST">
+          <input style="display:none" type="text" name="profession" maxlength="100" value=<%-user.profession[i]%>>
+          <button class="button-delete">Delete profession</button>
+        </form>
+        <%}%>
+    </ul>
+    <form action="/profiles/professional/addProfession/<%-locals.user.id%>  " method="POST">
+      <label for="Profession">Profession</label>
+      <input type="text" name="profession" maxlength="100" placeholder="Add your profession">
+      <button class="button blue fright">Add</button>
+    </form>
+    <form action="/profiles/professional/deleteProfession/<%-locals.user.id%>" method="POST">
+      <button class="button blue fright">Remove all</button>
+    </form>
+    <br>
+    <h4>Experience</h4>
+
+    <ul>
+      <% for (var i=0; i<user.profession.length; i++){%>
+        <li>
+          <%-user.profession[i]%>
+        </li>
+        <form action="/profiles/professional/deleteProfession/<%-locals.user.id%>" method="POST">
+          <input style="display:none" type="text" name="profession" maxlength="100" value=<%-user.profession[i]%>>
+          <button class="button-delete">Delete profession</button>
+        </form>
+        <%}%>
+    </ul>
+    <form action="/profiles/professional/addExperience/<%-locals.user.id%>  " method="POST">
+      <label for="job">Job title</label>
+      <input type="text" name="title" maxlength="100" placeholder="Add your job title">
+      <label for="Company">Company</label>
+      <input type="text" name="company" maxlength="300" placeholder="Add company name">
+      <label for="Start">Date start</label>
+      <input type="date" name="from" maxlength="300" placeholder="Enter start date">
       <label for="End">Date end</label>
-     <input type="text" name="End" maxlength="300"
-       placeholder="Enter end date" >  
-      <br>
-      <input type="radio" name="current" value="other"> Current position <br>
+      <input type="date" name="to" maxlength="300" placeholder="Enter end date">
+      <input type="radio" name="current" value="other"> Current position
+      <label for="description">Description</label>
+      <textarea type="text" name="description" maxlength="400" placeholder="Enter end date"></textarea>
       <button class="button blue fright">Add experience</button>
-      
-      <br>
-      <h4>Education</h4>
-      <label for="Degree">Date end</label>
-     <input type="text" name="End" maxlength="300"
-       placeholder="Enter end date" >
-      <br>
-      <label for="University">University</label>
-     <input type="text" name="University" maxlength="300"
-       placeholder="Add university name" >
-      <br>
-      <label for="Degree">Degree</label>
-     <input type="text" name="Degree" maxlength="300"
-       placeholder="Enter degree" >
-      <br>
-      <label for="Description">Description</label>
-     <input type="text" name="Descripion" maxlength="300"
-       placeholder="Add description" >
-      <br>
-      <label for="Graduation">Date graduated</label>
-     <input type="text" name="End" maxlength="300"
-       placeholder="Enter date of graduation" >
-      <br>
-      <h4>Contact details</h4>
-      <label for="Email">E-mail</label>
-    <input type="text" name="email" maxlength="300"
-      placeholder="Add your e-mail address" > 
+    </form>
     <br>
-    
-      <label for="LinkedIn">LinkedIn</label>
-    <input type="text" name="LinkedIn" maxlength="300"
-      placeholder="Add your LinkedIn profile" > 
+    <h4>Education</h4>
+    <label for="Degree">Date end</label>
+    <input type="text" name="End" maxlength="300" placeholder="Enter end date">
     <br>
-      <label for="Landline">Landline</label>
-      <input type="text" name="Landline" maxlength="300"
-        placeholder="Add your phone number" > 
-     <br> 
-       <label for="Mobile">Moblie</label>
-        <input type="text" name="Mobile" maxlength="300"
-          placeholder="Add your mobile number" > 
-     <br> 
-      <h5>Address</h5>
-      <label for="City">City</label>
-      <input type="text" name="City" maxlength="300"
-        placeholder="Add your city" > 
-     <br>  
-     <label for="Street">Street</label>
-      <input type="text" name="Street" maxlength="300"
-        placeholder="Add street name and number" > 
-     <br> 
-     <label for="Zip">Zip code</label>
-     <input type="text" name="Zip" maxlength="300"
-       placeholder="Add zip code" > 
+    <label for="University">University</label>
+    <input type="text" name="University" maxlength="300" placeholder="Add university name">
+    <br>
+    <label for="Degree">Degree</label>
+    <input type="text" name="Degree" maxlength="300" placeholder="Enter degree">
+    <br>
+    <label for="Description">Description</label>
+    <input type="text" name="Descripion" maxlength="300" placeholder="Add description">
+    <br>
+    <label for="Graduation">Date graduated</label>
+    <input type="text" name="End" maxlength="300" placeholder="Enter date of graduation">
+    <br>
+    <h4>Contact details</h4>
+    <label for="Email">E-mail</label>
+    <input type="text" name="email" maxlength="300" placeholder="Add your e-mail address">
+    <br>
+
+    <label for="LinkedIn">LinkedIn</label>
+    <input type="text" name="LinkedIn" maxlength="300" placeholder="Add your LinkedIn profile">
+    <br>
+    <label for="Landline">Landline</label>
+    <input type="text" name="Landline" maxlength="300" placeholder="Add your phone number">
+    <br>
+    <label for="Mobile">Moblie</label>
+    <input type="text" name="Mobile" maxlength="300" placeholder="Add your mobile number">
+    <br>
+    <h5>Address</h5>
+    <label for="City">City</label>
+    <input type="text" name="City" maxlength="300" placeholder="Add your city">
+    <br>
+    <label for="Street">Street</label>
+    <input type="text" name="Street" maxlength="300" placeholder="Add street name and number">
+    <br>
+    <label for="Zip">Zip code</label>
+    <input type="text" name="Zip" maxlength="300" placeholder="Add zip code">
     <br>
     <label for="Country">Country</label>
-    <input type="text" name="Country" maxlength="300"
-      placeholder="Add country" >
+    <input type="text" name="Country" maxlength="300" placeholder="Add country">
 
 
     <button class="button blue fright">Change</button>
-  </form>
+    </form>
 
- 
+
 
 </div>
 <a href='/logout'>log out</a>
