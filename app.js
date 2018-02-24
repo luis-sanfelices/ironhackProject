@@ -80,8 +80,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/', index);
-app.use('/signup', signup);
 app.use('/', login);
+app.use('/signup', signup);
 app.use('/profiles', profile);
 app.use('/professionals', professionals);
 

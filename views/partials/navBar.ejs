@@ -1,24 +1,45 @@
 <! — views/partials/nav.ejs ->
 <div class="nav-tabs-navigation">
+    <div class="logo-nav-bar">
+        IronHack Proyect
+    </div>
     <div class="nav-tabs-wrapper">
         <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a>
+            <li id="home-nav-bar" class="nav-item">
+                <a class="nav-link" data-toggle="tab" onclick='window.location.href="/"' role="tab">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Settings</a>
-                <ul class="dropdown-menu ">
-                    <div class="dropdown-header" data-toggle="tab" href="#action">Header</div>
-                    <a  class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                </ul>
-            </li>
+            <%
+            if ( typeof(locals.isAuthenticated) != "undefined" && locals.isAuthenticated) {%>
+                <li id="profiles-nav-bar" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%-locals.user.username%></a>
+                    <ul class="dropdown-menu ">
+                        <div class="dropdown-header" data-toggle="tab"><%-locals.user.role%></div>
+                        <a class="dropdown-item" href="/profiles/<%-locals.user.role%>">Profile</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </ul>
+                </li>
+            <%} else {%>
+                <li id="login-nav-bar" class="nav-item">
+                    <a class="nav-link" data-toggle="tab" onclick='window.location.href="/login"' role="tab">Sign in</a>
+                </li>
+                <li id="signup-family-nav-bar" class="nav-item">
+                    <a class="nav-link" data-toggle="tab" onclick='window.location.href="/signup/family"' role="tab">Sign un as Family</a>
+                </li>
+                <li id="signup-profesional-nav-bar" class="nav-item">
+                    <a class="nav-link" data-toggle="tab" onclick='window.location.href="/signup/professional"' role="tab">Sign up as Professional</a>
+                </li>
+            <%}%>
         </ul>
     </div>
 </div>
+
+<style>
+   .nav-tabs-navigation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   }
+   .logo-nav-bar {
+       margin-left:20px;
+   }
+</style>
