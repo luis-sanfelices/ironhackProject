@@ -79,8 +79,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/', index);
-app.use('/signup', signup);
 app.use('/', login);
+app.use('/signup', signup);
 app.use('/profiles', profile);
 
 // catch 404 and forward to error handler
