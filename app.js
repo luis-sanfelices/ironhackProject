@@ -28,7 +28,8 @@ mongoose.connect(process.env.MONGODB_URI, { reconnectTries: false }, (err) => {
 const index = require('./routes/index');
 const signup = require('./routes/auth/signup');
 const login = require('./routes/auth/signin');
-const profile = require('./routes/profiles/profile')
+const profile = require('./routes/profiles/profile');
+const professionals = require('./routes/professionals');
 
 const app = express();
 
@@ -82,6 +83,7 @@ app.use('/', index);
 app.use('/signup', signup);
 app.use('/', login);
 app.use('/profiles', profile);
+app.use('/professionals', professionals);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
