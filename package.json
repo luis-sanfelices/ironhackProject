@@ -9,6 +9,7 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "~1.18.2",
+    "bootstrap-datepicker": "^1.7.1",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.1",
@@ -19,6 +20,7 @@
     "express": "~4.15.5",
     "express-ejs-layouts": "^2.3.1",
     "express-session": "^1.15.6",
+    "grunt-cli": "^1.2.0",
     "install": "^0.10.4",
     "mongoose": "4.13.9",
     "morgan": "~1.9.0",

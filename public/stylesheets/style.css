@@ -10,3 +10,7 @@ body {
  .logo-nav-bar {
      margin-left:20px;
  }
+ #family-info-form-container {
+  margin: 2%;
+  width: 50%;
+ }
