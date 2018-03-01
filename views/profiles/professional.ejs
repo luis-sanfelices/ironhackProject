@@ -1,102 +1,156 @@
-<div>Hello professional
-  <%-user.username %>
-    <h4>Profession</h4>
-    <ul>
-      <% for (var i=0; i<user.profession.length; i++){%>
-        <li>
-          <%-user.profession[i]%>
-        </li>
-        <form action="/profiles/professional/deleteProfession/<%-locals.user.id%>" method="POST">
-          <input style="display:none" type="text" name="profession" maxlength="100" value=<%-user.profession[i]%>>
-          <button class="button-delete">Delete profession</button>
-        </form>
-        <%}%>
-    </ul>
-    <form action="/profiles/professional/addProfession/<%-locals.user.id%>  " method="POST">
-      <label for="Profession">Profession</label>
-      <input type="text" name="profession" maxlength="100" placeholder="Add your profession">
-      <button class="button blue fright">Add</button>
-    </form>
-    <form action="/profiles/professional/deleteProfession/<%-locals.user.id%>" method="POST">
-      <button class="button blue fright">Remove all</button>
-    </form>
-    <br>
-    <h4>Experience</h4>
 
+<div>Hello professional <%-user.username %></div>
+<div id="professional-info-form-container">
+  <h4>Profession</h4>
+  <div>
+      <ul>
+        <% for (var i=0; i<user.profession.length; i++){%>
+          <li>
+            <%-user.profession[i]%>
+          </li>
+          <form action="/profiles/professional/deleteProfession/<%-locals.user.id%>" method="POST">
+            <input style="display:none" type="text" name="profession" maxlength="100" value=<%-user.profession[i]%>>
+            <button class="btn btn-info btn-round">Delete profession</button>
+          </form>
+          <%}%>
+      </ul>
+  </div>
+  <div class="form-group">
+      <form action="/profiles/professional/addProfession/<%-locals.user.id%>  " method="POST" >
+        <label for="Profession">Profession</label>
+        <input type="text" class="form-control" name="profession" placeholder="Add your profession">
+        <button class="btn btn-info btn-round">Add</button>
+      </form>
+  </div>
+
+  <h4>Experience</h4>
+  <div>
     <ul>
-      <% for (var i=0; i<user.profession.length; i++){%>
+      <% for (var i=0; i<user.experience.length; i++){%>
         <li>
-          <%-user.profession[i]%>
+          <%-user.experience[i].title%>
         </li>
-        <form action="/profiles/professional/deleteProfession/<%-locals.user.id%>" method="POST">
-          <input style="display:none" type="text" name="profession" maxlength="100" value=<%-user.profession[i]%>>
-          <button class="button-delete">Delete profession</button>
-        </form>
-        <%}%>
+          <form action="/profiles/professional/deleteExperience/<%-locals.user.id%>" method="POST">
+            <input style="display:none" type="text" name="experience" maxlength="100" value=<%-user.experience[i]%>>
+            <button class="btn btn-info btn-round">Delete experience</button>
+          </form>
+          <%}%>
     </ul>
-    <form action="/profiles/professional/addExperience/<%-locals.user.id%>  " method="POST">
-      <label for="job">Job title</label>
-      <input type="text" name="title" maxlength="100" placeholder="Add your job title">
-      <label for="Company">Company</label>
-      <input type="text" name="company" maxlength="300" placeholder="Add company name">
-      <label for="Start">Date start</label>
-      <input type="date" name="from" maxlength="300" placeholder="Enter start date">
-      <label for="End">Date end</label>
-      <input type="date" name="to" maxlength="300" placeholder="Enter end date">
-      <input type="radio" name="current" value="other"> Current position
-      <label for="description">Description</label>
-      <textarea type="text" name="description" maxlength="400" placeholder="Enter end date"></textarea>
-      <button class="button blue fright">Add experience</button>
+  </div>
+  <div>
+    <form action="/profiles/professional/addExperience/<%-locals.user.id%>  " method="POST">    
+      <div class="form-group"> 
+       <label for="job">Job title</label>
+      <input type="text" class="form-control" name="title" placeholder="Add your job title">
+      </div>
+      <div class="form-group"> 
+        <label for="Company">Company</label>
+        <input type="text" class="form-control" name="company" placeholder="Add company name">
+        </div>
+        <div class="form-group">
+        <label for="Start">Date start</label>
+        <input type="date" class="form-control" name="from" placeholder="Enter start date">
+      </div>
+      <div class="form-group">
+        <label for="End">Date end</label>
+        <input type="date" class="form-control" name="to"  placeholder="Enter end date">
+      </div> 
+       <div class="form-group">
+        <input type="radio" name="current" value="other"> Current position
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea type="text" class="form-control" name="description" placeholder="Add description"></textarea>
+      </div>
+      <button class="btn btn-info btn-round">Add experience</button>
     </form>
-    <br>
+  </div>
+
     <h4>Education</h4>
-    <label for="Degree">Date end</label>
-    <input type="text" name="End" maxlength="300" placeholder="Enter end date">
-    <br>
-    <label for="University">University</label>
-    <input type="text" name="University" maxlength="300" placeholder="Add university name">
-    <br>
-    <label for="Degree">Degree</label>
-    <input type="text" name="Degree" maxlength="300" placeholder="Enter degree">
-    <br>
-    <label for="Description">Description</label>
-    <input type="text" name="Descripion" maxlength="300" placeholder="Add description">
-    <br>
-    <label for="Graduation">Date graduated</label>
-    <input type="text" name="End" maxlength="300" placeholder="Enter date of graduation">
-    <br>
+    <div
+      <ul>
+        <% for (var i=0; i<user.education.length; i++){%>
+          <li>
+            <%-user.education[i].degree%>
+          </li>
+          <form action="/profiles/professional/deleteEducation/<%-locals.user.id%>" method="POST">
+            <input style="display:none" type="text" name="_id" value=<%-user.education[i]._id%>>
+            <button class="btn btn-info btn-round">Delete education</button>
+          </form>
+          <%}%>
+      </ul>
+      <form action="/profiles/professional/addEducation/<%-locals.user.id%>  " method="POST">
+        <div class="form-group"> 
+          <label for="degree">Degree</label>
+          <input type="text" class="form-control" name="degree" placeholder="Add degree">
+        </div>
+        <div class="form-group"> 
+          <label for="university">University</label>
+          <input type="text" class="form-control" name="university" placeholder="Add university name">
+        </div>
+        <div class="form-group"> 
+          <label for="graduation">Date graduated</label>
+          <input id='datetimepicker1' type="date" class="form-control" name="graduation" placeholder="Enter date of graduation">
+        </div>
+        <div class="form-group"> 
+          <label for="description">Description</label>
+          <textarea type="text" class="form-control" name="description" placeholder="Add description"></textarea>
+        <button class="btn btn-info btn-round">Add education</button>
+        </div>
+      </form>
+    </div>
+
+
     <h4>Contact details</h4>
-    <label for="Email">E-mail</label>
-    <input type="text" name="email" maxlength="300" placeholder="Add your e-mail address">
-    <br>
-
-    <label for="LinkedIn">LinkedIn</label>
-    <input type="text" name="LinkedIn" maxlength="300" placeholder="Add your LinkedIn profile">
-    <br>
-    <label for="Landline">Landline</label>
-    <input type="text" name="Landline" maxlength="300" placeholder="Add your phone number">
-    <br>
-    <label for="Mobile">Moblie</label>
-    <input type="text" name="Mobile" maxlength="300" placeholder="Add your mobile number">
-    <br>
-    <h5>Address</h5>
-    <label for="City">City</label>
-    <input type="text" name="City" maxlength="300" placeholder="Add your city">
-    <br>
-    <label for="Street">Street</label>
-    <input type="text" name="Street" maxlength="300" placeholder="Add street name and number">
-    <br>
-    <label for="Zip">Zip code</label>
-    <input type="text" name="Zip" maxlength="300" placeholder="Add zip code">
-    <br>
-    <label for="Country">Country</label>
-    <input type="text" name="Country" maxlength="300" placeholder="Add country">
-
-
-    <button class="button blue fright">Change</button>
+        <ul>
+          <% for (var i=0; i<user.contact.length; i++){%>
+            <li>
+              <%-user.contact[i].email%>
+            </li>
+            <form action="/profiles/professional/deleteContact/<%-locals.user.id%>" method="POST">
+              <input style="display:none" type="text" name="contact" maxlength="100" value=<%-user.contact[i]%>>
+              <button class="btn btn-info btn-round">Delete contact</button>
+            </form>
+            <%}%>
+        </ul
+      <form action="/profiles/professional/addContact/<%-locals.user.id%>  " method="POST">
+      <div class ="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" name="email" placeholder="Add your e-mail address">
+      </div>
+      <div class ="form-group">
+        <label for="linkedIn">LinkedIn</label>
+        <input type="text" class="form-control" name="linkedIn" placeholder="Add your LinkedIn profile">
+      </div>
+      <div class ="form-group">
+        <label for="landline">Landline</label>
+        <input type="text" class="form-control" name="landline" placeholder="Add your phone number">
+      </div>
+      <div class ="form-group">
+        <label for="mobile">Moblie</label>
+        <input type="text" class="form-control" name="mobile" placeholder="Add your mobile number">
+      </div>
+        <button class="btn btn-info btn-round">Add contact details</button>
+      </form>
+        <h5>Address</h5>
+      <form action="/profiles/professional/addContact/<%-locals.user.id%>  " method="POST"></form>
+      <div class ="form-group">
+        <label for="city">City</label>
+        <input type="text"  class="form-control" name="city" placeholder="Add your city">
+      </div>
+      <div class ="form-group">
+        <label for="Street">Street</label>
+        <input type="text"  class="form-control" name="Street" placeholder="Add street name and number">
+      </div>
+      <div class ="form-group">
+        <label for="zip">Zip code</label>
+        <input type="text"  class="form-control" name="zip" placeholder="Add zip code">
+      </div>
+        <div class ="form-group">
+        <label for="country">Country</label>
+        <input type="text"  class="form-control" name="country" placeholder="Add country">
+      </div>
+        <button class="btn btn-info btn-round">Change</button>
     </form>
-
-
-
-</div>
-<a href='/logout'>log out</a>
+  </div>
+</div>>

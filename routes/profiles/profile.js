@@ -4,8 +4,13 @@ const ensureLogin = require('connect-ensure-login');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
+<<<<<<< HEAD
 
 const Family = require('../../models/family');
+=======
+const Family = require('../../models/family');
+
+>>>>>>> 2a3f661090b5defc6a5d7c61eb7da93a0d6c4a83
 const Professional = require('../../models/professional');
 
 router.get('/family', ensureLogin.ensureLoggedIn(), (req, res) => {
@@ -61,7 +66,7 @@ router.post('/professional/deleteProfession/:id', (req, res) => {
 
 router.post('/professional/addExperience/:id', (req, res) => {
   console.log(req.body);
-  const { profession } = req.body;
+  const { experience } = req.body;
   const { id } = req.params;
   Professional.findByIdAndUpdate(
     { _id: id }, {
@@ -72,15 +77,64 @@ router.post('/professional/addExperience/:id', (req, res) => {
 });
 
 router.post('/professional/deleteExperience/:id', (req, res) => {
-  const { profession } = req.body;
+  const { experience } = req.body;
   const { id } = req.params;
   Professional.findByIdAndUpdate(
+<<<<<<< HEAD
     { _id: id }, {
       $pull: { profession } },
+=======
+    { _id : id }, {
+      $pull: { experience: req.body } },
+>>>>>>> 2a3f661090b5defc6a5d7c61eb7da93a0d6c4a83
     { new: true },
     (err, managerparent) => res.redirect('/profiles/professional'),
   );
 });
 
+router.post('/professional/addEducation/:id', (req, res) => {
+  const { education } = req.body;
+  const { id } = req.params;
+  Professional.findByIdAndUpdate(
+    { _id : id }, {
+      $push: { education: req.body } },
+    { new: true },
+    (err, managerparent) => {res.redirect('/profiles/professional')}
+  );
+});
+
+router.post('/professional/deleteEducation/:id', (req, res) => {
+
+  const { id } = req.params;
+  Professional.findByIdAndUpdate(
+    { _id : id }, {
+      $pull: { education: {_id: req.body._id } } },
+    { new: true },
+    (err, managerparent) => { console.log(err); res.redirect('/profiles/professional') }
+  );
+});
+
+router.post('/professional/addContact/:id', (req, res) => {
+  console.log(req.body);
+  const { contact } = req.body;
+  const { id } = req.params;
+  Professional.findByIdAndUpdate(
+    { _id : id }, {
+      $push: { contact: req.body } },
+    { new: true },
+    (err, managerparent) => {console.log(err, managerparent); res.redirect('/profiles/professional')}
+  );
+});
+
+router.post('/professional/deleteContact/:id', (req, res) => {
+  const { contact } = req.body;
+  const { id } = req.params;
+  Professional.findByIdAndUpdate(
+    { _id : id }, {
+      $pull: { contact: req.body } },
+    { new: true },
+    (err, managerparent) => res.redirect('/profiles/professional')
+  );
+});
 
 module.exports = router;
