@@ -83,25 +83,24 @@ router.post('/professional/deleteExperience/:id', (req, res) => {
 });
 
 router.post('/professional/addEducation/:id', (req, res) => {
-  console.log(req.body);
   const { education } = req.body;
   const { id } = req.params;
   Professional.findByIdAndUpdate(
     { _id : id }, {
       $push: { education: req.body } },
     { new: true },
-    (err, managerparent) => {console.log(err, managerparent); res.redirect('/profiles/professional')}
+    (err, managerparent) => {res.redirect('/profiles/professional')}
   );
 });
 
 router.post('/professional/deleteEducation/:id', (req, res) => {
-  const { education } = req.body;
+
   const { id } = req.params;
   Professional.findByIdAndUpdate(
     { _id : id }, {
-      $pull: { education: req.body } },
+      $pull: { education: {_id: req.body._id } } },
     { new: true },
-    (err, managerparent) => res.redirect('/profiles/professional')
+    (err, managerparent) => { console.log(err); res.redirect('/profiles/professional') }
   );
 });
 

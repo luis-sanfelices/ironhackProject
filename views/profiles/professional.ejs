@@ -74,7 +74,7 @@
             <%-user.education[i].degree%>
           </li>
           <form action="/profiles/professional/deleteEducation/<%-locals.user.id%>" method="POST">
-            <input style="display:none" type="text" name="education" value=<%-user.education[i]%>>
+            <input style="display:none" type="text" name="_id" value=<%-user.education[i]._id%>>
             <button class="btn btn-info btn-round">Delete education</button>
           </form>
           <%}%>
