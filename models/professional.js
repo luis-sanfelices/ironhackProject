@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -6,7 +7,7 @@ const Education = new Schema({
   degree: String,
   university: String,
   graduation: Date,
-  decription: String,
+  description: String,
 });
 
 const Experience = new Schema({
@@ -15,7 +16,7 @@ const Experience = new Schema({
   from: Date,
   to: Date,
   current: Boolean,
-  decription: String,
+  description: String,
 });
 
 const Contact = new Schema({
