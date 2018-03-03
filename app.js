@@ -10,6 +10,7 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const passport = require('passport');
 const configurePassport = require('./helpers/passport');
+const moment = require('moment');
 
 const mongoose = require('mongoose');
 
