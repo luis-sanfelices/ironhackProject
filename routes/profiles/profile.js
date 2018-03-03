@@ -4,13 +4,8 @@ const ensureLogin = require('connect-ensure-login');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
-<<<<<<< HEAD
 
 const Family = require('../../models/family');
-=======
-const Family = require('../../models/family');
-
->>>>>>> 2a3f661090b5defc6a5d7c61eb7da93a0d6c4a83
 const Professional = require('../../models/professional');
 
 router.get('/family', ensureLogin.ensureLoggedIn(), (req, res) => {
@@ -80,13 +75,8 @@ router.post('/professional/deleteExperience/:id', (req, res) => {
   const { experience } = req.body;
   const { id } = req.params;
   Professional.findByIdAndUpdate(
-<<<<<<< HEAD
-    { _id: id }, {
-      $pull: { profession } },
-=======
     { _id : id }, {
       $pull: { experience: req.body } },
->>>>>>> 2a3f661090b5defc6a5d7c61eb7da93a0d6c4a83
     { new: true },
     (err, managerparent) => res.redirect('/profiles/professional'),
   );

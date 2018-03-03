@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const pictureSchema = new Schema({
+  name: String,
+  pic_path: String,
+  pic_name: String,
+});
+
 const familySchema = new Schema({
   username: String,
   password: String,
@@ -12,6 +18,7 @@ const familySchema = new Schema({
   email: String,
   phone: String,
   address: String,
+  avatar: pictureSchema,
 }, {
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });

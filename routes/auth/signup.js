@@ -16,13 +16,13 @@ router.post('/family', (req, res, next) => {
   const { username, password } = req.body;
 
   if (username === '' || password === '') {
-    res.render('auth/signup_family', { error: 'Indicate username and password' });
+    res.render('index', { error: 'Indicate username and password' });
     return;
   }
 
   Family.findOne({ username }, 'username', (error, user) => {
     if (user !== null) {
-      res.render('auth/signup_family', { error: 'The username already exists' });
+      res.render('index', { error: 'The username already exists' });
       return;
     }
 
@@ -37,7 +37,7 @@ router.post('/family', (req, res, next) => {
 
     newFamily.save((err) => {
       if (err) {
-        res.render('auth/signup', { error: 'Something went wrong' });
+        res.render('index', { error: 'Something went wrong' });
       } else {
         passport.authenticate('family')(req, res, () => {
           // req.toastr.success(‘Sesión iniciada con exito’, ‘Bienvenido!‘, optionsToastr);

@@ -30,6 +30,7 @@ const signup = require('./routes/auth/signup');
 const login = require('./routes/auth/signin');
 const profile = require('./routes/profiles/profile');
 const professionals = require('./routes/professionals');
+const upload = require('./routes/upload');
 
 const app = express();
 
@@ -81,6 +82,7 @@ app.use((req, res, next) => {
 
 app.use('/', index);
 app.use('/', login);
+app.use('/upload', upload);
 app.use('/signup', signup);
 app.use('/profiles', profile);
 app.use('/professionals', professionals);

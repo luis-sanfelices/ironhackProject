@@ -1,25 +1,45 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1> -Name of the app- </h1>
-    <p> Welcome to the community for professional help </p>
-    <%
-    if ( typeof(locals.isAuthenticated) != "undefined" && locals.isAuthenticated) { console.log(locals.user);%>
-    <p> You are logged as <%-locals.user.username%> <%-locals.user.role%></p>
-    <button type="button" name="Sign up" onclick='window.location.href="/profiles/<%-locals.user.role%>"'> Go to your profile</button>
-    <%}%>
-    <button type="button" name="Sign up" onclick='window.location.href="/signup/family"'> Sign up as family</button>
-    <button type="button" name="Sign up" onclick='window.location.href="/signup/professional"'> Sign up as professional </button>
-    <button type="button" name="Log in" onclick='window.location.href="/login"'> Log in </button>
-    <h2> Search for a professional in your area </h2>
-    <form id="geocode">
-      <input id="address" type="" name="address" placeholder="Type your direction">
-      <input type="submit" name="">
-  </body>
-</html>
-<%- contentFor('scripts') %>
-<script></script>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Signup as family</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"> 
+              <form action="/signup/family" method="POST" id="form-container">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control"  name="username" placeholder="username">
+                </div> 
+                <div class="form-group">
+                  <label for="username">Password</label>
+                  <input type="password" class="form-control"  name="password" placeholder="Your password">
+                </div>    
+                <% if ( typeof(error) != "undefined") {%>
+                  <div  id="login-error" class="alert alert-danger" role="alert">
+                    <%= error %>
+                  </div>
+                <% } %>
+                <div class="text-center">
+                  <button class="col-md-12 btn btn-info btn-round">Sign up</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-link" data-dismiss="modal">cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%- contentFor('scripts') %>>
+
+<script>
+  $( document ).ready( function() {
+    if ( $( "#login-error" ).length ) {
+        console.log("entra");
+      $('#myModal').modal('toggle');
+    }
+  });
+</script>
