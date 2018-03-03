@@ -72,13 +72,12 @@ router.post('/professional/addExperience/:id', (req, res) => {
 });
 
 router.post('/professional/deleteExperience/:id', (req, res) => {
-  const { experience } = req.body;
   const { id } = req.params;
   Professional.findByIdAndUpdate(
     { _id : id }, {
-      $pull: { experience: req.body } },
+      $pull: { experience: {_id: req.body._id } } },
     { new: true },
-    (err, managerparent) => res.redirect('/profiles/professional')
+    (err, managerparent) => { console.log(err); res.redirect('/profiles/professional') }
   );
 });
 
@@ -94,7 +93,6 @@ router.post('/professional/addEducation/:id', (req, res) => {
 });
 
 router.post('/professional/deleteEducation/:id', (req, res) => {
-
   const { id } = req.params;
   Professional.findByIdAndUpdate(
     { _id : id }, {
@@ -110,7 +108,7 @@ router.post('/professional/addContact/:id', (req, res) => {
   const { id } = req.params;
   Professional.findByIdAndUpdate(
     { _id : id }, {
-      $push: { contact: req.body } },
+      $set: { contact: req.body } },
     { new: true },
     (err, managerparent) => {console.log(err, managerparent); res.redirect('/profiles/professional')}
   );

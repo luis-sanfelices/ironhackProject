@@ -13,8 +13,8 @@ const Education = new Schema({
 const Experience = new Schema({
   title: String,
   company: String,
-  from: Date,
-  to: Date,
+  start: Date,
+  end: Date,
   current: Boolean,
   description: String,
 });
@@ -24,12 +24,11 @@ const Contact = new Schema({
   linkedIn: String,
   landline: Number,
   mobile: Number,
-  address: {
-    city: String,
-    street: String,
-    zip: Number,
-    country: String,
-  },
+  city: String,
+  street: String,
+  zip: Number,
+  country: String,
+
 });
 
 const professionalSchema = new Schema({
@@ -39,7 +38,7 @@ const professionalSchema = new Schema({
   profession: Array,
   education: [Education],
   experience: [Experience],
-  contact: [Contact],
+  contact: Contact,
 }, {
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
