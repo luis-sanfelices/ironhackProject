@@ -2,6 +2,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const pictureSchema = new Schema({
+  name: String,
+  pic_path: String,
+  pic_name: String,
+});
 
 const Education = new Schema({
   degree: String,
@@ -35,7 +40,12 @@ const professionalSchema = new Schema({
   username: String,
   password: String,
   role: String,
+  name: String,
+  lastName: String,
+  gender: String,
+  birthdate: Date,
   profession: Array,
+  avatar: pictureSchema,
   education: [Education],
   experience: [Experience],
   contact: Contact,

@@ -17,14 +17,13 @@ router.get('/family', ensureLogin.ensureLoggedIn(), (req, res) => {
 });
 
 router.post('/family/:id', (req, res) => {
-  console.log(req.body);
   const { name, lastName, gender, birthdate, email, phone, address } = req.body;
   const { id } = req.params;
   Family.findByIdAndUpdate(
     { _id: id }, {
       $set: { name, lastName, gender, birthdate, email, phone, address } },
     { new: true },
-    (err, family) => console.log(err, family),// res.redirect('/profiles/professional')
+    (err, family) => console.log(err, family)// res.redirect('/profiles/professional')
   );
 });
 
@@ -43,7 +42,7 @@ router.post('/professional/addProfession/:id', (req, res) => {
     { _id: id }, {
       $push: { profession } },
     { new: true },
-    (err, managerparent) => res.redirect('/profiles/professional'),
+    (err, managerparent) => res.redirect('/profiles/professional')
   );
 });
 
@@ -54,7 +53,7 @@ router.post('/professional/deleteProfession/:id', (req, res) => {
     { _id: id }, {
       $pull: { profession } },
     { new: true },
-    (err, managerparent) => res.redirect('/profiles/professional'),
+    (err, managerparent) => res.redirect('/profiles/professional')
   );
 });
 
@@ -65,7 +64,7 @@ router.post('/professional/addExperience/:id', (req, res) => {
     { _id: id }, {
       $push: { experience: req.body } },
     { new: true },
-    (err, managerparent) => { res.redirect('/profiles/professional') ;},
+    (err, managerparent) => { res.redirect('/profiles/professional')}
   );
 });
 

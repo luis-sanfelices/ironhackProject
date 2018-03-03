@@ -1,3 +1,33 @@
+<div class="search-container">
+    <div class="inside-search-container">
+      Look for professionals in your area
+    </div>
+    <form action="/search> " method="POST">
+      <div class ="form-group">
+        <label for="city"></label>
+        <input id="search-field" type="city" class="form-control"  name="city" placeholder="Type your city">
+        <button class="btn btn-info" id="search-button" >Search</button>
+      </div>
+</div>
+
+
+<div class="professionals-cards">
+  <div id="recommended">
+    <span>Recommended professionals</span>
+  </div>
+  <div class= "card-columns">
+  <% professionals.forEach((professional) => { %>
+    <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title"><%= professional.name %><%= professional.lastName %></h4>
+        
+          <a href="#" class="btn btn-primary" id="seeprofile-button">See full profile</a>
+        </div>
+      </div>
+  <%  }) %>
+  </div>
+</div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -33,7 +63,7 @@
         </div>
     </div>
 </div>
-<%- contentFor('scripts') %>>
+<%- contentFor('scripts') %>
 
 <script>
   $( document ).ready( function() {

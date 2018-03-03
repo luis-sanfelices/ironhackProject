@@ -18,3 +18,53 @@ body {
  #professional-info-form-container {
   width: 50%;
  }
+
+ .card-columns {
+   margin: 2%;
+ }
+
+ .search-container {
+  display:  flex;
+  justify-content: space-around;
+  align-items:  center;
+  height: 140px;
+  margin: 5%;
+  background-color: #d4e0ea;
+  font-size: 20px;
+  font-weight: 700;
+ }
+
+ #search-field {
+  display:  flex;
+  justify-content: space-around;
+  align-items:  center;
+  height: 40px;
+  width: 250px;
+  margin: 5%;
+  background-color: #e5f0f5;
+  font-size: 10px;
+  font-weight: 700;
+ }
+
+ .professionals-cards {
+  height: 700px;
+  margin: 5%;
+  background-color: #d4e0ea;
+  font-size: 20px;
+  font-weight: 700;
+ }
+
+ #recommended {
+  display:  flex;
+  justify-content: space-around;
+  align-items:  center;
+  padding: 2%;
+ }
+
+ #seeprofile-button {
+   margin: 5%;
+ }
+
+ #search-button {
+   margin: 5%;
+ }
