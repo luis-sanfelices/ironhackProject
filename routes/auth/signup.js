@@ -56,13 +56,13 @@ router.post('/professional', (req, res, next) => {
   const { username, password } = req.body;
 
   if (username === '' || password === '') {
-    res.render('auth/signup_professional', { error: 'Indicate username and password' });
+    res.render('index', { error: 'Indicate username and password' });
     return;
   }
 
   Professional.findOne({ username }, 'username', (error, user) => {
     if (user !== null) {
-      res.render('auth/signup_professional', { error: 'The username already exists' });
+      res.render('index', { error: 'The username already exists' });
       return;
     }
 
@@ -77,7 +77,7 @@ router.post('/professional', (req, res, next) => {
 
     newProfessional.save((err) => {
       if (err) {
-        res.render('auth/signup', { error: 'Something went wrong' });
+        res.render('index', { error: 'Something went wrong' });
       } else {
         passport.authenticate('professional')(req, res, () => {
           // req.toastr.success(‘Sesión iniciada con exito’, ‘Bienvenido!‘, optionsToastr);

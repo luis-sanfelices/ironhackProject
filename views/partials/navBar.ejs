@@ -20,16 +20,13 @@
                 </li>
             <%} else {%>
                 <li id="login-nav-bar" class="nav-item">
-                    <a class="nav-link" data-toggle="tab" onclick='window.location.href="/login"' role="tab">Sign in</a>
+                    <a class="nav-link" role="tab" data-toggle="modal" data-target="#signin-modal">Sign in</a>
                 </li>
                 <li id="signup-family-nav-bar" class="nav-item">
-                    <a class="nav-link" data-toggle="tab" onclick='window.location.href="/signup/family"' role="tab">Sign un as Family</a>
+                    <a class="nav-link" role="tab" data-toggle="modal" data-target="#signup-family-modal">Sign up as Family</a>
                 </li>
                 <li id="signup-profesional-nav-bar" class="nav-item">
-                    <a class="nav-link" data-toggle="tab" onclick='window.location.href="/signup/professional"' role="tab">Sign up as Professional</a>
-                </li>
-                <li class="nav-link" role="tab" data-toggle="modal" data-target="#myModal">
-                    Launch demo modal
+                        <a class="nav-link" role="tab" data-toggle="modal" data-target="#signup-professional-modal">Sign up as Professional</a>
                 </li>
                 <%}%>
         </ul>

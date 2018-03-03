@@ -1,3 +1,4 @@
+
 <div class="search-container">
     <div class="inside-search-container">
       Look for professionals in your area
@@ -28,7 +29,8 @@
   <%  }) %>
   </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="signup-family-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -38,7 +40,7 @@
                 </button>
             </div>
             <div class="modal-body"> 
-              <form action="/signup/family" method="POST" id="form-container">
+              <form action="/signup/family" method="POST" id="form-container-signup-family">
                 <div class="form-group">
                   <label for="username">Username</label>
                   <input type="text" class="form-control"  name="username" placeholder="username">
@@ -48,7 +50,7 @@
                   <input type="password" class="form-control"  name="password" placeholder="Your password">
                 </div>    
                 <% if ( typeof(error) != "undefined") {%>
-                  <div  id="login-error" class="alert alert-danger" role="alert">
+                  <div  id="signup-family-error" class="alert alert-danger" role="alert">
                     <%= error %>
                   </div>
                 <% } %>
@@ -63,13 +65,81 @@
         </div>
     </div>
 </div>
-<%- contentFor('scripts') %>
-
-<script>
-  $( document ).ready( function() {
-    if ( $( "#login-error" ).length ) {
-        console.log("entra");
-      $('#myModal').modal('toggle');
-    }
-  });
-</script>
+<div class="modal fade" id="signup-professional-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Signup as professional</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"> 
+              <form action="signup/professional" method="POST" id="form-container-signup-professional">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control"  name="username" placeholder="username">
+                </div> 
+                <div class="form-group">
+                  <label for="username">Password</label>
+                  <input type="password" class="form-control"  name="password" placeholder="Your password">
+                </div>    
+                <% if ( typeof(error) != "undefined") {%>
+                  <div  id="signup-professional-error" class="alert alert-danger" role="alert">
+                    <%= error %>
+                  </div>
+                <% } %>
+                <div class="text-center">
+                  <button class="col-md-12 btn btn-info btn-round">Sign up</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-link" data-dismiss="modal">cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Sign in</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"> 
+              <form id="form-container-sign-in">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control"  name="username" placeholder="username">
+                </div> 
+                <div class="form-group">
+                  <label for="username">Password</label>
+                  <input type="password" class="form-control"  name="password" placeholder="Your password">
+                </div>
+                <div class="form-group">
+                    <label for="username">User Type</label>
+                  <select id="sign-role" class="form-control" name="role">
+                      <option value="default">Select one</option>
+                      <option value="professional">Professional</option>
+                      <option value="family">Family</option>
+                  </select> 
+                </div>
+                <% if ( typeof(error) != "undefined") {%>
+                  <div  id="signin-error" class="alert alert-danger" role="alert">
+                    <%= error %>
+                  </div>
+                <% } %>
+                <div class="text-center">
+                  <button id="singin-button" class="col-md-12 btn btn-info btn-round">Sign in</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-link" data-dismiss="modal">cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
